@@ -549,6 +549,12 @@ function trackLinks() {
   document.querySelectorAll('.story-link, .flat-list .story-link').forEach(a => {
     a.addEventListener('click', () => {
       localStorage.setItem(LS_LINK, a.href);
+      // Remove highlight from any previously marked link
+      document.querySelectorAll('.story-link.last-visited').forEach(el => {
+        el.classList.remove('last-visited', 'last-visited-animate');
+      });
+      // Apply highlight to the newly clicked link
+      a.classList.add('last-visited');
     });
   });
 }
